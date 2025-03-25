@@ -23,38 +23,23 @@ The primary intention of these katas is to practice Test-Driven Development (TDD
 
 Implement a function that takes 2 comma-separated numbers and returns the sum. An empty string should return `0`.
 
-The function should be able to handle any number of comma-separated numbers
+### 2. Bowling
 
-The function should handle newlines (`\n`) as a delimiter (`1\n2,3` → `6`)
+**Focus:** TDD, Red-Green-Refactor & ping-pong pairing
 
-The function should support custom delimiters (`1;2` → `3`)
+**Task:**
 
-### 2. Bank Account
+Create a piece of software that tracks the score of a game of 10-pin bowling.
 
-**Focus:** Outside-in TDD, basic OOP, immutability
+### 3. Bank Account
+
+**Focus:** Outside-in TDD, OOP, immutability
 
 **Task:**
 
 Implement a `BankAccount` class that supports a `deposit(amount)`, `withdraw(amount)`, and `printStatement()` method.
 
-Start with the following integration test:
-
-```
-Given a bank account with no transactions
-When I deposit 1000 on "2024-03-21"
-And I deposit 2000 on "2024-03-22"
-And I withdraw 500 on "2024-03-23"
-Then the printed statement should be:
-
-Date       | Amount | Balance
-2025-03-23 | -500   | 2500
-2025-03-22 | 2000   | 3000
-2025-03-21 | 1000   | 1000
-```
-
-Then break the problem down into smalled units, and solve them in a classic TDD fashion until the Acceptance test is passing.
-
-### 3. Refactoring Legacy Code
+### 4. Refactoring Legacy Code
 
 **Focus:** Using unit tests to document and understand legacy code
 
@@ -62,26 +47,19 @@ Then break the problem down into smalled units, and solve them in a classic TDD 
 
 Wrap the legacy code in unit tests until you're confident you understand what it does. Then, fix any bugs you may have found and refactor for readability and efficiency.
 
-### 4. Mars Rover
+### 5. Mars Rover
 
-**Focus:** 
-
-**Task:**
-
-xxx
-
-### 5. DDD & TDD
-
-**Focus:** 
+**Focus:** TDD & Data structures
 
 **Task:**
 
-xxx
+Implement the control software for a rover deployed to Mars. The rover can only receive basic instruction that allow it to move on a grid. The instructions are move (`M`), turn left (`L`) and turn right (`R`). Based on these instructions we need to be able to track the rovers movedment and direction.
 
-### 6. Outisde-in TDD
+### 6. Video Rental
 
-**Focus:** 
+**Focus:** DDD & TDD
 
 **Task:**
 
-xxx
+Build a video rental system.
+
