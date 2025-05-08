@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"author": "Nyle Connolly <TheNyle>",
 	"scripts": {
-		"test": "jest"
+		"test": "jest --watchAll"
 	},
 	"license": "ISC",
 	"dependencies": {
