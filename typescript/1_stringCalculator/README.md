@@ -18,16 +18,20 @@ For this kata, you should also make use of the ping-pong method of pairing. Give
 * A writes a new failing test
 * and so on...
 
+Focus on writing a test that coveres the simplest case possible, and then the smallest amount of code to make the test pass.
+
 ## Kata
 
 **Focus:** TDD, Red-Green-Refactor & ping-pong pairing
 
 **Task:**
 
-Implement a function that takes 2 comma-separated numbers and returns the sum. An empty string should return `0`.
+Implement a function that takes a string of comma-separated numbers and returns the sum.
 
-The function should be able to handle any number of comma-separated numbers
+An empty string should return `0`, and a single number returns itself.
 
-The function should handle newlines (`\n`) as a delimiter (`1\n2,3` → `6`)
+The function should be able to handle any number of comma-separated numbers.
 
-The function should support custom delimiters (`1;2` → `3`)
+The function should handle newlines (`\n`) as a delimiter (`1\n2,3` → `6`).
+
+The function should support custom delimiters (`1;2` → `3`).

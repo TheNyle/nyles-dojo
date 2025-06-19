@@ -31,13 +31,13 @@ Implement a function that takes 2 comma-separated numbers and returns the sum. A
 
 Create a piece of software that tracks the score of a game of 10-pin bowling.
 
-### 3. Bank Account
+### 3. Video Rental
 
-**Focus:** Outside-in TDD, OOP, immutability
+**Focus:** Outside-in TDD & DDD
 
 **Task:**
 
-Implement a `BankAccount` class that supports a `deposit(amount)`, `withdraw(amount)`, and `printStatement()` method.
+You are building a system for a video rental store. Customers can rent movies, return them, and receive receipts.
 
 ### 4. Refactoring Legacy Code
 
@@ -54,12 +54,3 @@ Wrap the legacy code in unit tests until you're confident you understand what it
 **Task:**
 
 Implement the control software for a rover deployed to Mars. The rover can only receive basic instruction that allow it to move on a grid. The instructions are move (`M`), turn left (`L`) and turn right (`R`). Based on these instructions we need to be able to track the rovers movedment and direction.
-
-### 6. Video Rental
-
-**Focus:** DDD & TDD
-
-**Task:**
-
-Build a video rental system.
-
