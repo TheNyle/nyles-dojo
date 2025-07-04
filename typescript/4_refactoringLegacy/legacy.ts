@@ -5,44 +5,44 @@ export enum DiscountCodes {
 }
 
 export class OrderProcessor {
-  private c = new Map<DiscountCodes, number>([
+  private discountCodesMap = new Map<DiscountCodes, number>([
     [DiscountCodes.BLACKFRIDAY30, 0.3],
     [DiscountCodes.WELCOME10, 0.1],
     [DiscountCodes.NEWYEAR15, 0.15],
   ]);
 
   process(
-    a: {
+    orderItems: {
       product_name: string;
       price: number;
     }[],
-    j?: DiscountCodes
+    discountCode?: DiscountCodes
   ): {
-    t: number;
-    u: number;
+    totalCost: number;
+    numberOfItems: number;
   } {
-    let b = 0;
+    let totalPrice = 0;
     let i = 0;
-    while (i < a.length) {
-      b += a[i].price;
+    while (i < orderItems.length) {
+      totalPrice += orderItems[i].price;
       i++;
     }
-    let m = 0;
-    if (j) {
-      if (this.c.size > 0) {
-        if (this.c.has(j)) {
-          const u = this.c.get(j);
-          if (u) {
-            if (b >= 20) {
-              m = u * b;
+    let discountApplied = 0;
+    if (discountCode) {
+      if (this.discountCodesMap.size > 0) {
+        if (this.discountCodesMap.has(discountCode)) {
+          const discountCodeValue = this.discountCodesMap.get(discountCode);
+          if (discountCodeValue) {
+            if (totalPrice >= 20) {
+              discountApplied = discountCodeValue * totalPrice;
             }
           }
         }
       }
     }
     return {
-      t: b - m,
-      u: a.length,
+      totalCost: totalPrice - discountApplied,
+      numberOfItems: orderItems.length,
     };
   }
 }
