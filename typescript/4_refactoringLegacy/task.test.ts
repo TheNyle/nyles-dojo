@@ -42,13 +42,21 @@ describe("OrderProcessor", () => {
 
   });
 
-
-  test("applies 15% discount to single item with NEWYEAR15", () => {
+  test("applies 15% discount to single EXPENSIVE item with NEWYEAR15", () => {
     const response = target.process([
       { product_name: "product expensive", price: 200 }
     ], DiscountCodes.NEWYEAR15);
 
     expect(response.totalCost).toBe(170);
+    expect(response.numberOfItems).toBe(1);
+  });
+
+  test("applies NO discount to single LOW COST item with WELCOME10", () => {
+    const response = target.process([
+      { product_name: "product cheap", price: 10 }
+    ], DiscountCodes.WELCOME10);
+
+    expect(response.totalCost).toBe(10);
     expect(response.numberOfItems).toBe(1);
   });
 
