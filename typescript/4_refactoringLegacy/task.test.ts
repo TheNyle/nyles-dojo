@@ -1,4 +1,4 @@
-import { OrderProcessor, DiscountCodes } from "./legacy";
+import {DiscountCodes, OrderProcessor} from "./legacy";
 
 describe("OrderProcessor", () => {
   let target: OrderProcessor;
@@ -24,4 +24,14 @@ describe("OrderProcessor", () => {
     expect(response.t).toBe(25);
     expect(response.u).toBe(2);
   });
+
+  test("processes an order with a welcome discount code", () => {
+      const response = target.process([
+          { product_name: "a product", price: 10},
+          { product_name: "a product", price: 20}
+      ], DiscountCodes.WELCOME10);
+
+      expect(response.t).toBe(27);
+      expect(response.u).toBe(2);
+  })
 });
