@@ -1,4 +1,4 @@
-import {DiscountCodes, OrderProcessor} from "./legacy";
+import { DiscountCodes, OrderProcessor } from "./legacy";
 
 describe("OrderProcessor", () => {
   let target: OrderProcessor;
@@ -26,12 +26,22 @@ describe("OrderProcessor", () => {
   });
 
   test("processes an order with a welcome discount code", () => {
-      const response = target.process([
-          { product_name: "a product", price: 10},
-          { product_name: "a product", price: 20}
-      ], DiscountCodes.WELCOME10);
+    const response = target.process([
+      { product_name: "a product", price: 10 },
+      { product_name: "a product", price: 20 }
+    ], DiscountCodes.WELCOME10);
 
-      expect(response.t).toBe(27);
-      expect(response.u).toBe(2);
+    expect(response.t).toBe(27);
+    expect(response.u).toBe(2);
+  })
+
+  test("applies 30% discount to items with BLACKFRIDAY30", () => {
+    const response = target.process([
+      { product_name: "product 1", price: 10 },
+      { product_name: "product 2", price: 20 }
+    ], DiscountCodes.BLACKFRIDAY30);
+
+    expect(response.t).toBe(21);
+    expect(response.u).toBe(2);
   })
 });
