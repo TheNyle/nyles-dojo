@@ -21,25 +21,27 @@ export class OrderProcessor {
     totalCost: number;
     numberOfItems: number;
   } {
-    let totalPrice = 0;
-    let i = 0;
-    while (i < orderItems.length) {
-      totalPrice += orderItems[i].price;
-      i++;
-    }
+    const totalPrice = orderItems.reduce(
+      (total, item) => total + item.price,
+      0
+    );
+
     let discountApplied = 0;
-    if (discountCode) {
-      if (this.discountCodesMap.size > 0) {
-        if (this.discountCodesMap.has(discountCode)) {
-          const discountCodeValue = this.discountCodesMap.get(discountCode);
-          if (discountCodeValue) {
-            if (totalPrice >= 20) {
-              discountApplied = discountCodeValue * totalPrice;
-            }
-          }
-        }
+
+    if (!discountCode || !this.discountCodesMap.size) {
+      return {
+        totalCost: totalPrice,
+        numberOfItems: orderItems.length,
+      };
+    }
+
+    const discountCodeValue = this.discountCodesMap.get(discountCode);
+    if (discountCodeValue) {
+      if (totalPrice >= 20) {
+        discountApplied = discountCodeValue * totalPrice;
       }
     }
+
     return {
       totalCost: totalPrice - discountApplied,
       numberOfItems: orderItems.length,
