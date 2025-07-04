@@ -8,7 +8,7 @@ export class OrderProcessor {
   private c = new Map<DiscountCodes, number>([
     [DiscountCodes.BLACKFRIDAY30, 0.3],
     [DiscountCodes.WELCOME10, 0.1],
-    [DiscountCodes.NEWYEAR15, 1.15],
+    [DiscountCodes.NEWYEAR15, 0.15],
   ]);
 
   process(

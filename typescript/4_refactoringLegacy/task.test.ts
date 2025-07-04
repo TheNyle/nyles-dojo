@@ -44,4 +44,14 @@ describe("OrderProcessor", () => {
     expect(response.t).toBe(21);
     expect(response.u).toBe(2);
   })
+
+  test("applies 15% discount to items with NEWYEAR15", () => {
+    const response = target.process([
+      { product_name: "product 1", price: 10 },
+      { product_name: "product 2", price: 20 }
+    ], DiscountCodes.NEWYEAR15);
+
+    expect(response.t).toBe(25.5);
+    expect(response.u).toBe(2);
+  });
 });
