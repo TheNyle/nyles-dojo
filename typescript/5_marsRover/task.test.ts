@@ -19,6 +19,13 @@ describe("Rover", () => {
         rover.instruct(['M'])
 
         expect(rover.position).toEqual({coords: [0, 1], direction: "N"})
+    })
 
+    it("handles multiple M instructions", () => {
+      const rover = new Rover([0, 0], "N");
+
+      rover.instruct(['M','M','M'])
+
+      expect(rover.position).toEqual({ coords:[0,3], direction: "N"})
     })
 });

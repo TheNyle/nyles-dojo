@@ -1,4 +1,5 @@
 type Direction = "N" | "E" | "S" | "W";
+type Instruction = "M" | "L" | "R";
 
 export class Rover {
     constructor(
@@ -11,11 +12,16 @@ export class Rover {
         return {coords: this.coordinates, direction: this.direction}
     }
 
-    instruct(instructions: string[]) {
-        const instOne = instructions[0];
+    instruct(instructions: Instruction[]) {
+        for(const instruction of instructions) {
+            switch(instruction) {
+                case "M":
+                    this.coordinates[1] += 1
 
-        if (instOne === 'M') {
-            this.coordinates = [this.coordinates[0], this.coordinates[1] + 1];
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
