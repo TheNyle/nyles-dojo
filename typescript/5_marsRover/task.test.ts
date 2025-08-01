@@ -28,4 +28,20 @@ describe("Rover", () => {
 
       expect(rover.position).toEqual({ coords:[0,3], direction: "N"})
     })
+    
+    it('handles multiple M instructions for diff directions', () => {
+      const rover = new Rover([0,0], "E");
+      
+      rover.instruct(['M', 'M']);
+      
+      expect(rover.position).toEqual({ coords:[2,0], direction: "E"});
+    });
+
+    it('handles multiple M instructions for diff directions', () => {
+      const rover = new Rover([2,0], "S");
+      
+      rover.instruct(['M', 'M', "M"]);
+      
+      expect(rover.position).toEqual({ coords:[2,-3], direction: "S"});
+    });
 });
