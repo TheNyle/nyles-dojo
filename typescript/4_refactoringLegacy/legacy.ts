@@ -26,15 +26,7 @@ export class OrderProcessor {
       0
     );
 
-    if (totalPrice < 20) {
-      return {
-        totalCost: totalPrice,
-        numberOfItems: orderItems.length,
-      };
-    }
-
-    let discountApplied = 0;
-    if (!discountCode || !this.discountCodesMap.size) {
+    if (totalPrice < 20 || !discountCode || !this.discountCodesMap.size) {
       return {
         totalCost: totalPrice,
         numberOfItems: orderItems.length,
@@ -42,14 +34,9 @@ export class OrderProcessor {
     }
 
     const discountCodeValue = this.discountCodesMap.get(discountCode);
-    if (!discountCodeValue) {
-      return {
-        totalCost: totalPrice,
-        numberOfItems: orderItems.length,
-      };
-    }
-
-    discountApplied = discountCodeValue * totalPrice;
+    const discountApplied = discountCodeValue
+      ? discountCodeValue * totalPrice
+      : 0;
 
     return {
       totalCost: totalPrice - discountApplied,
