@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ac3f8c60-1698-4717-bfc2-40137b5a3d92" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2yin6Pd1UhTmIzp1RIF2DPvOrK2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Jest.OrderProcessor.applies 15% discount to single item with NEWYEAR15.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.OrderProcessor.applies NO discount to single LOW COST item with WELCOME10.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.OrderProcessor.calculates with discount code $input.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.OrderProcessor.calculates with discount code.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.OrderProcessor.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.OrderProcessor.processes an order with a discount code.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Template.I want to rent a movie and get a receipt.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Template.i want to rent a movie and get a receipt.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/wayne/nyles-dojo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;/Users/wayne/nyles-dojo/typescript/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/wayne/nyles-dojo/typescript/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Jest.OrderProcessor">
+    <configuration name="OrderProcessor" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/typescript/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/typescript" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/typescript/4_refactoringLegacy/task.test.ts" />
+      <test-names>
+        <test-name value="OrderProcessor" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderProcessor.applies 15% discount to single item with NEWYEAR15" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/typescript/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/typescript" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/typescript/4_refactoringLegacy/task.test.ts" />
+      <test-names>
+        <test-name value="OrderProcessor" />
+        <test-name value="applies 15% discount to single item with NEWYEAR15" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderProcessor.applies NO discount to single LOW COST item with WELCOME10" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/typescript/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/typescript" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/typescript/4_refactoringLegacy/task.test.ts" />
+      <test-names>
+        <test-name value="OrderProcessor" />
+        <test-name value="applies NO discount to single LOW COST item with WELCOME10" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderProcessor.calculates with discount code $input" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/typescript/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/typescript" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/typescript/4_refactoringLegacy/task.test.ts" />
+      <test-names>
+        <test-name value="OrderProcessor" />
+        <test-name value="calculates with discount code $input" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderProcessor.calculates with discount code" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/typescript/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/typescript" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/typescript/4_refactoringLegacy/task.test.ts" />
+      <test-names>
+        <test-name value="OrderProcessor" />
+        <test-name value="calculates with discount code" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.OrderProcessor" />
+        <item itemvalue="Jest.OrderProcessor.applies NO discount to single LOW COST item with WELCOME10" />
+        <item itemvalue="Jest.OrderProcessor.calculates with discount code $input" />
+        <item itemvalue="Jest.OrderProcessor.calculates with discount code" />
+        <item itemvalue="Jest.OrderProcessor.applies 15% discount to single item with NEWYEAR15" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-WS-251.23774.424" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ac3f8c60-1698-4717-bfc2-40137b5a3d92" name="Changes" comment="" />
+      <created>1750326085290</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750326085290</updated>
+      <workItem from="1750326086887" duration="5055000" />
+      <workItem from="1751633395544" duration="3078000" />
+      <workItem from="1751880160389" duration="4000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

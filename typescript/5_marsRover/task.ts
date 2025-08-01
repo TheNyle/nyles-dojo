@@ -1,16 +1,23 @@
 type Direction = "N" | "E" | "S" | "W";
 
 export class Rover {
-  constructor(
-    private coordinates: [number, number],
-    private _direction: Direction
-  ) {}
+    constructor(
+        private coordinates: [number, number],
+        private direction: Direction
+    ) {
+    }
 
-  get position() {
-    return this.coordinates;
-  }
+    get position() {
+        return {coords: this.coordinates, direction: this.direction}
+    }
 
-  get direction() {
-    return this._direction;
-  }
+    instruct(instructions: string[]) {
+        const instOne = instructions[0];
+
+        if (instOne === 'M') {
+            this.coordinates = [this.coordinates[0], this.coordinates[1] + 1];
+        }
+    }
+
 }
+
