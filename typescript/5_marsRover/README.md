@@ -25,3 +25,29 @@ Create a `Rover` with the following requirements:
 
 
 // 0
+// cardinal direction
+// position on the grid x,y
+
+// N
+// E
+// S
+// W
+
+// 0,0 // N
+
+// N
+// 2
+
+// N
+// 0,2
+
+
+// L,L
+
+// W,S
+
+// S
+// 0,2
+
+// "0,2 N"
+// { coords: "0,1", direction: "N" }
