@@ -1,5 +1,6 @@
-describe("Template", () => {
-  test("template", () => {
-    expect(true).toBe(true);
+import { Rover } from './task'
+describe("Rover", () => {
+  it("has a rover", () => {
+    expect(Rover).toBeDefined();
   });
 });
