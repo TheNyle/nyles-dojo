@@ -19,4 +19,13 @@ Create a `Rover` with the following requirements:
     * Turn right (`R`)
 * After completing the set of movement instructions, the Rover should report it's current position on the grid and the cardinal direction it is facing.
 
+## Examples
+
+| Start X | Start Y | Facing | Instructions | End X | End Y | Facing |
+|---|---|---|---|---|---|---|
+| 0 | 0 | N | `M` | 0 | 1 | N |
+| 0 | 0 | N | `R M` | 1 | 0 | E |
+| 1 | 2 | N | `L M L M L M L M` | 1 | 2 | N |
+| 0 | 0 | N | `M M R M M` | 2 | 2 | E |
+
 
