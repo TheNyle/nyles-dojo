@@ -1,37 +1,38 @@
 # Video Rental
 
-This kata focuses on Outside-in TDD and leans into Domain-Driven Design (DDD). You will be given a number of acceptance criteria, and you should write your software beginning from the **user's** perspective.
+This kata focuses on **Domain-Driven Design (DDD)**. You'll model a rich business domain — pricing rules, inventory management, and transactions — using the language of the business.
 
-### What is Outside-in TDD?
+### What is DDD?
 
-While traditional TDD starts with the smallest units (inside-out), Outside-in TDD begins from the user's perspective. You start by writing acceptance tests that describe complete user behaviors, then work inward, creating only the code necessary to make those tests pass.
-The flow is:
+Domain-Driven Design is an approach where the structure of your code mirrors the language and concepts of the business domain. Instead of thinking in terms of technical layers (controllers, services, repositories), you think in terms of **domain objects** that represent real concepts.
 
-1. Write an acceptance test describing user behavior
-1. Run acceptance test - see it fails
-1. In the test, think about what dependencies will be needed to make the test pass (Inject them into your service).
-1. Run acceptance test - see it passes
-1. Create real implementations of each dependency - using Red-Green-Refactor TDD
-1. Replace all of the mocks with the real implementations
-1. Run acceptance test - see it passes
+Key principles:
 
-### Benefits of Outside-in TDD
+* **Ubiquitous language:** Use the same terms in your code as the business uses. If the business says "rental," your code has a `Rental` — not a `Transaction` or `Record`.
+* **Rich domain models:** Business logic lives inside domain objects, not in a separate "service" layer. A `Movie` knows its pricing rules. A `Rental` knows whether it's overdue.
+* **Encapsulation:** Domain objects protect their own invariants. You can't create an invalid rental or a negative price.
+* **Value objects:** Small, immutable concepts like `Money`, `DateRange`, or `MovieType` that carry meaning beyond raw primitives.
 
-* **User-focused design:** You build exactly what users need, not what you think they might need.
-* **Natural architecture emergence:** Dependencies and interfaces are discovered organically rather than assumed upfront.
-* **Reduced over-engineering:** You only create code that's actually required by real usage scenarios.
-* **Better separation of concerns:** The outside-in flow naturally leads to loosely coupled, highly cohesive components.
-* **Living documentation:** Your tests describe real user scenarios, making the codebase more maintainable.
+### Approach
+
+Use whichever TDD style you're comfortable with (inside-out or outside-in — you've practiced both now). The focus here is on **modelling the domain well**, not on a specific testing technique.
+
+Ask yourself:
+- What are the key nouns in this domain? (These become your classes/types)
+- What are the business rules? (These become methods on your domain objects)
+- What language does the business use? (This becomes your naming)
 
 ## Kata
 
-**Focus:** Outside-in TDD & Domain-Driven Design (DDD)
+**Focus:** Domain-Driven Design & TDD
 
 **Task:**
 
-You are building a system for a video rental store. Customers can rent movies, return them, and receive receipts. The system needs to track inventory, calculate pricing, and handle late fees. For this challenge, we will simulate user stories with a set of acceptance critera.
+You are building a system for a video rental store. Customers can rent movies, return them, and receive receipts. The system needs to track inventory, calculate pricing, and handle late fees.
 
-### KATA-001 - Customers rent a single movie
+### User Stories
+
+#### KATA-001 — Customer rents a single movie
 
 As a store clerk
 I want to process a movie rental for a customer
@@ -44,7 +45,7 @@ So that they receive a receipt and the inventory is updated
 * System generates a receipt with customer name, movie title, rental date, due date, and price
 * System updates inventory (removes movie from available stock)
 
-### KATA-002 - Customer rents multiple movies
+#### KATA-002 — Customer rents multiple movies
 
 As a store clerk
 I want to process multiple movie rentals in one transaction
@@ -54,9 +55,9 @@ So that customers can rent several movies at once
 * Customer can rent multiple movies in a single transaction
 * Receipt shows all movies with individual prices and total
 * All movies are removed from available inventory
-* If any movie is unavailable, the entire transaction fails
+* If any movie is unavailable, the entire transaction fails (no partial rentals)
 
-### KATA-003 - Customer returns movies
+#### KATA-003 — Customer returns movies
 
 As a store clerk
 I want to process movie returns
@@ -71,57 +72,54 @@ So that inventory is updated and late fees are calculated
 ### Business Rules
 
 **Movie Types and Pricing**
-* New Release: £3.00 per day, due in 1 day
-* Regular: £2.00 per day, due in 3 days
-* Children: £1.50 per day, due in 5 days
+
+| Type | Daily Rate | Rental Period |
+|------|-----------|---------------|
+| New Release | £3.00/day | 1 day |
+| Regular | £2.00/day | 3 days |
+| Children's | £1.50/day | 5 days |
 
 **Late Fees**
-* New Release: £3.00 per day late
-* Regular: £1.50 per day late
-* Children: £1.50 per day late
 
-**Customer Information**
-Customers have:
-* ID (unique identifier)
-* Name
-* Rental history
+| Type | Late Fee |
+|------|----------|
+| New Release | £3.00 per day |
+| Regular | £1.50 per day |
+| Children's | £1.50 per day |
 
-### Constraints
+**Invariants:**
+* A movie cannot be rented if it's not in stock
+* A transaction either fully succeeds or fully fails — no partial rentals
+* Late fees are calculated from the day after the due date
+* A customer must exist to process a rental
 
-Your rental service depends on two external systems that already exist in production. Their interfaces are provided below — you **cannot** modify them. Your service must accept these as injected dependencies.
+### Domain Concepts
 
-```typescript
-// Provided: an external inventory system (e.g., a database or third-party API)
-interface MovieCatalogue {
-  findByTitle(title: string): Promise<{ title: string; type: "NewRelease" | "Regular" | "Children" } | null>;
-  checkOut(title: string): Promise<void>;
-  checkIn(title: string): Promise<void>;
-}
+Consider how you might model these:
+* **Movie** — has a title and a type that determines pricing
+* **Customer** — has an ID, a name, and rental history
+* **Rental** — connects a customer to a movie with dates; knows whether it's overdue
+* **Receipt** — a record of a transaction (rental or return)
+* **Inventory** — tracks which movies are available
 
-// Provided: an external customer database
-interface CustomerRepository {
-  findById(id: string): Promise<{ id: string; name: string } | null>;
-}
-```
-
-In your acceptance tests, you should **mock** these interfaces. Then, when you move to implementing real versions, TDD each one separately using inside-out Red-Green-Refactor.
+These are suggestions, not prescriptions. Let your tests drive the design.
 
 ## Hints
 
 <details>
-<summary>What should my first test look like?</summary>
+<summary>Where do I start?</summary>
 
-Write an acceptance test that describes the full behaviour of KATA-001 from the user's perspective. Don't worry about implementation — describe what goes in and what comes out.
+Start with the simplest user story (KATA-001) and the simplest business rule within it. What's the first test? Perhaps: "renting a regular movie for 1 day costs £2.00."
 </details>
 
 <details>
-<summary>What do I mock?</summary>
+<summary>How do I handle pricing?</summary>
 
-In your acceptance test, think about what collaborators your service will need (e.g. something to check inventory, something to generate receipts). Inject these as dependencies and mock them in your first test.
+Pricing depends on movie type. Consider whether the movie itself should know its price, or whether a separate pricing concept handles it. Either can work — let your tests guide you.
 </details>
 
 <details>
-<summary>When do I replace the mocks?</summary>
+<summary>When should I refactor toward DDD concepts?</summary>
 
-Once your acceptance test passes with mocks, pick one mock and TDD a real implementation using inside-out Red-Green-Refactor. Then swap it in and re-run the acceptance test.
+Don't introduce domain objects before you need them. Write tests, make them pass with simple code, then refactor when you see duplication or unclear naming. The domain model emerges through refactoring, not upfront planning.
 </details>
