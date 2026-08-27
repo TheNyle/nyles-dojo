@@ -1,6 +1,7 @@
 export interface Order {
   id: string;
   customerId: string;
+  customerName: string;
   total: number;
 }
 

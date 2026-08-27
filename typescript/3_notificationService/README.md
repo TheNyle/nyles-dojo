@@ -49,8 +49,10 @@ Given an order ID, the notification service should:
 
 1. Look up the order details
 2. Look up the customer's notification preferences
-3. Render the appropriate message template
-4. Send the notification via the preferred channel
+3. Render the `"order-confirmation"` template with the customer's name and order total
+4. Send the notification via the preferred channel (email or SMS)
+
+There is only one notification type: order confirmations. The template name is always `"order-confirmation"`. Your service's job is purely orchestration — calling the right dependencies in the right order with the right data.
 
 ### Constraints
 
@@ -77,23 +79,35 @@ interface NotificationSender {
 
 ### Acceptance Criteria
 
-**Happy path:**
-* Given a valid order ID, the service sends a notification to the customer via their preferred channel
-* Email notifications include subject line "Order Confirmation — #[orderId]"
-* SMS notifications include the rendered template body only
-* The template is rendered with the customer's name and the order total
+**Happy path — email:**
+* Given a valid order ID where the customer prefers email
+* The template engine is called with `"order-confirmation"` and `{ customerName: "...", orderTotal: "..." }`
+* The email sender is called with the customer ID, subject `"Order Confirmation — #[orderId]"`, and the rendered template body
+
+**Happy path — SMS:**
+* Given a valid order ID where the customer prefers SMS
+* The SMS sender is called with the customer ID and the rendered template body (no subject)
 
 **Error cases:**
-* If the order doesn't exist, throw an error: "Order not found: [orderId]"
+* If the order doesn't exist, throw an error: `"Order not found: [orderId]"`
 * If the customer has no preferences, default to email
+
+### What to assert
+
+The key assertion in this kata is not a return value — it's that the **sender was called correctly**. Your tests should verify:
+- Which method was called (`sendEmail` vs `sendSms`)
+- What arguments it received (to, subject, body)
 
 ### Example
 
-A customer "Alice" places order "ORD-123" for £49.99. Her preferences say "email". The system should:
-1. Look up order ORD-123 → `{ id: "ORD-123", customerId: "CUST-1", total: 49.99 }`
-2. Look up CUST-1's preferences → `{ channel: "email" }`
-3. Render "order-confirmation" template with `{ customerName: "Alice", orderTotal: "£49.99" }` → "Hi Alice, your order for £49.99 has been confirmed!"
-4. Send email to Alice with subject "Order Confirmation — #ORD-123" and the rendered body
+A customer "Alice" (ID: "CUST-1") places order "ORD-123" for £49.99. Her preferences say "email". The service should:
+
+1. Call `orderRepo.findById("ORD-123")` → `{ id: "ORD-123", customerId: "CUST-1", total: 49.99 }`
+2. Call `customerPrefs.getPreferences("CUST-1")` → `{ channel: "email" }`
+3. Call `templateEngine.render("order-confirmation", { customerName: "Alice", orderTotal: "£49.99" })` → `"Hi Alice, your order for £49.99 has been confirmed!"`
+4. Call `sender.sendEmail("CUST-1", "Order Confirmation — #ORD-123", "Hi Alice, your order for £49.99 has been confirmed!")`
+
+Your test should mock steps 1–3 and **assert** that step 4 happened with the correct arguments.
 
 ## Hints
 
