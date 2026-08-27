@@ -51,7 +51,7 @@ Open the kata's README, read the requirements, then write your first failing tes
 
 **Task:**
 
-Implement a function that takes 2 comma-separated numbers and returns the sum. An empty string should return `0`.
+Implement a function that takes a string of comma-separated numbers and returns the sum. An empty string should return `0`.
 
 ### 2. Bowling
 
@@ -61,15 +61,23 @@ Implement a function that takes 2 comma-separated numbers and returns the sum. A
 
 Create a piece of software that tracks the score of a game of 10-pin bowling.
 
-### 3. Video Rental
+### 3. Notification Service
 
-**Focus:** Outside-in TDD & DDD
+**Focus:** Outside-in TDD, mocking & strong-style pairing
 
 **Task:**
 
-You are building a system for a video rental store. Customers can rent movies, return them, and receive receipts.
+Build a notification service that coordinates multiple external dependencies to send order confirmations to customers via their preferred channel.
 
-### 4. Refactoring Legacy Code
+### 4. Video Rental
+
+**Focus:** Domain-Driven Design & TDD
+
+**Task:**
+
+Build a system for a video rental store. Model the domain — movies, customers, rentals, pricing rules, and late fees — using the language of the business.
+
+### 5. Refactoring Legacy Code
 
 **Focus:** Using unit tests to document and understand legacy code
 
@@ -77,10 +85,10 @@ You are building a system for a video rental store. Customers can rent movies, r
 
 Wrap the legacy code in unit tests until you're confident you understand what it does. Then, fix any bugs you may have found and refactor for readability and efficiency.
 
-### 5. Mars Rover
+### 6. Mars Rover
 
-**Focus:** TDD & Data structures
+**Focus:** TDD & clean design
 
 **Task:**
 
-Implement the control software for a rover deployed to Mars. The rover can only receive basic instruction that allow it to move on a grid. The instructions are move (`M`), turn left (`L`) and turn right (`R`). Based on these instructions we need to be able to track the rovers movedment and direction.
+Implement the control software for a rover deployed to Mars. The rover receives basic instructions to move (`M`), turn left (`L`) and turn right (`R`) on a grid. Track its position and direction.
