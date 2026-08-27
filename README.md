@@ -13,6 +13,36 @@ The primary intention of these katas is to practice Test-Driven Development (TDD
 * [Pairing](./docs/PAIRING.md)
 * [Test-Driven Development (TDD)](./docs/TDD.md)
 
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- A pair partner (recommended!)
+
+### Setup
+
+```bash
+cd typescript
+npm install
+```
+
+### Running Tests
+
+```bash
+npm test           # run all tests once
+npm run test:watch # run tests in watch mode (re-runs on file changes)
+```
+
+### How to Work Through the Katas
+
+Work through the katas in order — they're designed to build on each other. Each kata has its own `README.md` with detailed instructions. You'll find:
+
+- `task.ts` — an empty file where you'll write your implementation
+- `task.test.ts` — a template test file to get you started
+
+Open the kata's README, read the requirements, then write your first failing test.
+
 ## Katas
 
 ### 1. String Calculator
