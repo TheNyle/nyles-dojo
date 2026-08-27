@@ -9,6 +9,9 @@
 		"test:watch": "jest --watchAll"
 	},
 	"license": "ISC",
+	"engines": {
+		"node": ">=18"
+	},
 	"devDependencies": {
 		"@babel/core": "^7.29.7",
 		"@babel/preset-env": "^7.29.7",
