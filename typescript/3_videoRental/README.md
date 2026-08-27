@@ -85,3 +85,23 @@ Customers have:
 * ID (unique identifier)
 * Name
 * Rental history
+
+## Hints
+
+<details>
+<summary>What should my first test look like?</summary>
+
+Write an acceptance test that describes the full behaviour of KATA-001 from the user's perspective. Don't worry about implementation — describe what goes in and what comes out.
+</details>
+
+<details>
+<summary>What do I mock?</summary>
+
+In your acceptance test, think about what collaborators your service will need (e.g. something to check inventory, something to generate receipts). Inject these as dependencies and mock them in your first test.
+</details>
+
+<details>
+<summary>When do I replace the mocks?</summary>
+
+Once your acceptance test passes with mocks, pick one mock and TDD a real implementation using inside-out Red-Green-Refactor. Then swap it in and re-run the acceptance test.
+</details>

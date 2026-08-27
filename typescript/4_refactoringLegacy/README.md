@@ -27,3 +27,23 @@ On opening the [file](./legacy.ts), you see that this was clearly written by a l
 2. It's now time to refactor. The code is impossible to read and isn't the most efficient. Make the code more readable and use your unit tests as a safety net. Feel free to update the language of your unit tests as things become clearer.
 
 3. Once you've performed the refactor and all of your tests are passing, go back through the code and fix any bugs that you identified in the first step.
+
+## Hints
+
+<details>
+<summary>How do I test code I don't understand?</summary>
+
+Start with what you *do* know from the PM's description. Write tests for the obvious happy path first, then explore edge cases by experimenting with different inputs.
+</details>
+
+<details>
+<summary>How do I know if something is a bug?</summary>
+
+If the code's behaviour contradicts the PM's description, that's a bug. Write a test that documents the *expected* behaviour — it should fail against the current code.
+</details>
+
+<details>
+<summary>How should I refactor?</summary>
+
+Rename one variable at a time. Run your tests after each rename to make sure nothing breaks. Once naming is clear, look for structural improvements like simplifying nested conditionals.
+</details>

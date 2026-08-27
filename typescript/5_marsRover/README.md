@@ -29,3 +29,23 @@ Create a `Rover` with the following requirements:
 | 0 | 0 | N | `M M R M M` | 2 | 2 | E |
 
 
+
+## Hints
+
+<details>
+<summary>Where do I start?</summary>
+
+What's the simplest thing a rover can do? It exists at a position. Write a test that creates a rover and checks its starting position.
+</details>
+
+<details>
+<summary>How do I handle turning?</summary>
+
+Think about the relationship between directions. What data structure lets you move between N, E, S, W in a predictable way?
+</details>
+
+<details>
+<summary>How do I handle movement?</summary>
+
+Movement depends on direction. A rover facing north moves differently to one facing east. Consider how you map a direction to a change in coordinates.
+</details>

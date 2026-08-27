@@ -35,3 +35,23 @@ The function should be able to handle any number of comma-separated numbers.
 The function should handle newlines (`\n`) as a delimiter (`1\n2,3` → `6`).
 
 The function should support custom delimiters (`1;2` → `3`).
+
+## Hints
+
+<details>
+<summary>Where do I start?</summary>
+
+Write a test for the simplest case: what should your function return when given an empty string?
+</details>
+
+<details>
+<summary>How do I handle custom delimiters?</summary>
+
+Think about how a user might specify a custom delimiter. One common approach is a special prefix in the input string — but there are others. Discuss with your pair what feels right.
+</details>
+
+<details>
+<summary>I'm writing too much code at once</summary>
+
+If your implementation handles more than the single failing test in front of you, delete it and write only what's needed to go green. The refactor step is where you generalise.
+</details>

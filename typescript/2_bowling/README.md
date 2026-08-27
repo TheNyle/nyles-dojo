@@ -26,3 +26,23 @@ Some examples scores are:
 `X X X X X X X X X X X X` (12 rolls: 12 strikes) = 10 frames * 30 points = 300
 `9- 9- 9- 9- 9- 9- 9- 9- 9- 9-` (20 rolls: 10 pairs of 9 and miss) = 10 frames * 9 points = 90
 `5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5` (21 rolls: 10 pairs of 5 and spare, with a final 5) = 10 frames * 15 points = 150
+
+## Hints
+
+<details>
+<summary>Where do I start?</summary>
+
+Start with the simplest possible game: all gutter balls (every roll is 0). What should the total score be?
+</details>
+
+<details>
+<summary>How do I handle spares and strikes?</summary>
+
+Don't try to handle them from the start. Get a basic game working first (no bonuses), then add spare logic, then strike logic — one test at a time.
+</details>
+
+<details>
+<summary>The 10th frame is confusing</summary>
+
+Handle it last. Get frames 1–9 working correctly first. The 10th frame is just a special case of allowing extra rolls when the player earns bonus balls.
+</details>
