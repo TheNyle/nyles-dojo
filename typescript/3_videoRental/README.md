@@ -86,6 +86,26 @@ Customers have:
 * Name
 * Rental history
 
+### Constraints
+
+Your rental service depends on two external systems that already exist in production. Their interfaces are provided below — you **cannot** modify them. Your service must accept these as injected dependencies.
+
+```typescript
+// Provided: an external inventory system (e.g., a database or third-party API)
+interface MovieCatalogue {
+  findByTitle(title: string): Promise<{ title: string; type: "NewRelease" | "Regular" | "Children" } | null>;
+  checkOut(title: string): Promise<void>;
+  checkIn(title: string): Promise<void>;
+}
+
+// Provided: an external customer database
+interface CustomerRepository {
+  findById(id: string): Promise<{ id: string; name: string } | null>;
+}
+```
+
+In your acceptance tests, you should **mock** these interfaces. Then, when you move to implementing real versions, TDD each one separately using inside-out Red-Green-Refactor.
+
 ## Hints
 
 <details>
