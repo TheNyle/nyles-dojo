@@ -1,4 +1,4 @@
-import { DiscountCodes, OrderProcessor } from "./legacy";
+import { DiscountCodes, MemberTier, OrderProcessor } from "./legacy";
 
 describe("Template", () => {
   test("template", () => {
@@ -9,6 +9,7 @@ describe("Template", () => {
         {
           product_name: "product",
           price: 100.0,
+          qty: 1,
         },
       ],
       DiscountCodes.WELCOME10

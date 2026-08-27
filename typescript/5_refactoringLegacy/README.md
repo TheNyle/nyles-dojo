@@ -20,9 +20,13 @@ On opening the [file](./legacy.ts), you see that this was clearly written by a l
 
     To get you started, your Product manager gives you the following overview of what the `OrderProcessor` does:
 
-    > The Order Processor takes a list of items (made up of an `product_name` and a `price`) and a `DiscountCode`. It finds the total value of your basket and applies any discount codes. It then returns a total cost and an item count. We don't give discounts on baskets worth less than 20.
+    > The Order Processor takes a list of items (each with a `product_name`, `price`, and `qty`) and optionally a `DiscountCode` and a `MemberTier`. It calculates the total basket value (price × quantity for each item), applies a bulk discount for items with 3 or more quantity (one unit free), applies any discount codes to the subtotal, then applies member savings based on tier. It returns the final total, the number of distinct items, and any member savings applied.
+    >
+    > Discount codes don't apply to baskets under £20. Member savings are: Silver gets £5 off orders over £50 (after discount), Gold gets £10 off orders over £50 or £5 off everything else. Bronze gets nothing.
+    >
+    > The processor also keeps a running history of orders so we can pull a summary of total revenue, order count, and items sold.
 
-    🐞 Keep an eye out for pesky bugs. When you identify a bug with a unit test. Mark it in the test description and come back to it later.
+    🐞 Keep an eye out for pesky bugs. When you identify a bug with a unit test, mark it in the test description and come back to it later.
 
 2. It's now time to refactor. The code is impossible to read and isn't the most efficient. Make the code more readable and use your unit tests as a safety net. Feel free to update the language of your unit tests as things become clearer.
 
