@@ -8,7 +8,7 @@ Using all of the practices learned in the String Calculator kata, apply them to 
 
 **Task:**
 
-Create a piece of software that tracks the score of a game of 10-pin bowling. the rules of bowling are as follows:
+Create a piece of software that tracks the score of a game of 10-pin bowling. The rules of bowling are as follows:
 
 * The game consists of 10 frames.
     * In each frame the player has two rolls to knock down 10 pins.
@@ -21,11 +21,15 @@ Create a piece of software that tracks the score of a game of 10-pin bowling. th
 * In the tenth frame a player who rolls a spare or strike is allowed to roll the extra balls to complete the frame.
     * However no more than three balls can be rolled in tenth frame.
 
-Some examples scores are:
+Some example scores are:
 
-`X X X X X X X X X X X X` (12 rolls: 12 strikes) = 10 frames * 30 points = 300
-`9- 9- 9- 9- 9- 9- 9- 9- 9- 9-` (20 rolls: 10 pairs of 9 and miss) = 10 frames * 9 points = 90
-`5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5` (21 rolls: 10 pairs of 5 and spare, with a final 5) = 10 frames * 15 points = 150
+```text
+X X X X X X X X X X X X          12 rolls: 12 strikes                       10 frames × 30 = 300
+9- 9- 9- 9- 9- 9- 9- 9- 9- 9-    20 rolls: 10 pairs of 9 and a miss         10 frames × 9  = 90
+5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5   21 rolls: 10 spares, with a final 5        10 frames × 15 = 150
+```
+
+Notation: `X` = strike, `/` = spare, `-` = miss (0 pins), and a digit = that many pins.
 
 ## Hints
 

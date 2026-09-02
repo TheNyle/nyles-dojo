@@ -1,14 +1,12 @@
 # Mars Rover
 
-
-
 ## Kata
 
 **Focus:** TDD, Red-Green-Refactor & data structures
 
 **Task:**
 
-Implement the control software for a rover deployed to Mars. The rover can only receive basic instruction that allow it to move on a grid. The instructions are move forwards (`M`), turn left (`L`) and turn right (`R`). Based on these instructions we need to be able to track the rovers movedment and direction.
+Implement the control software for a rover deployed to Mars. The rover can only receive basic instructions that allow it to move on a grid. The instructions are move forwards (`M`), turn left (`L`) and turn right (`R`). Based on these instructions we need to be able to track the rover's movement and direction.
 
 Create a `Rover` with the following requirements:
 
@@ -17,7 +15,7 @@ Create a `Rover` with the following requirements:
     * Move forwards (`M`)
     * Turn left (`L`)
     * Turn right (`R`)
-* After completing the set of movement instructions, the Rover should report it's current position on the grid and the cardinal direction it is facing.
+* After completing the set of movement instructions, the Rover should report its current position on the grid and the cardinal direction it is facing.
 
 ## Examples
 
@@ -27,8 +25,6 @@ Create a `Rover` with the following requirements:
 | 0 | 0 | N | `R M` | 1 | 0 | E |
 | 1 | 2 | N | `L M L M L M L M` | 1 | 2 | N |
 | 0 | 0 | N | `M M R M M` | 2 | 2 | E |
-
-
 
 ## Hints
 

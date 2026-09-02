@@ -48,12 +48,29 @@ If any rule fails, the entire booking is rejected. No partial bookings.
 
 The finance team has already built and deployed a fare calculator that handles all pricing logic. It's in [`fareCalculator.ts`](./fareCalculator.ts). **Your system must use this module for all price calculations** — finance will not approve any other pricing implementation in production.
 
-The fare calculator handles:
-- Base price (determined by destination)
-- **Group discount:** 4 or more passengers on a single booking get 10% off
-- **Loyalty discount:** Silver 5%, Gold 10%, Platinum 15%
-- Discounts do not stack — the best available discount is applied per passenger
-- **Premium upgrade:** Passengers can upgrade to a premium seat for a 25% surcharge on their (discounted) price. Limited to the spacecraft's premium seat allocation.
+> ⚠️ **Heads up:** this is real, deployed finance code. It's terse, uses single-letter names, and its interface will *not* match your domain model. That's deliberate — part of the task is adapting your clean domain objects to a messy external contract. **Read the file before you start.**
+
+The module exports two functions:
+
+```typescript
+// px: passengers, each { id: string; l: loyaltyTier; u: isPremiumUpgrade }
+// b:  base price for the destination
+// g:  whether the group discount is eligible (optional)
+// returns { f: { [passengerId]: price }, t: total }
+function calcFare(px: P[], b: number, g?: boolean): { f: Record<string, number>; t: number };
+
+// convenience wrapper: applies the group discount automatically when px.length >= 4
+function recalc(px: P[], b: number): { f: Record<string, number>; t: number };
+```
+
+What the calculator actually does, per passenger:
+
+- **Base price** (`b`) is determined by destination — *you* pass it in.
+- **Loyalty discount:** Silver 5%, Gold 10%, Platinum 15%.
+- **Group discount:** when the group flag is set *and* there are 4 or more passengers, the discount is raised to **at least 10%**. In other words, group acts as a **10% floor** — a passenger already on a higher loyalty discount (Platinum 15%) keeps theirs; everyone else is lifted to 10%. Discounts do **not** stack.
+- **Premium upgrade:** if a passenger's `u` flag is `true`, a flat **25% surcharge** is added on top of their (discounted) price.
+
+> **Important — where the premium-seat cap lives:** the calculator does **not** know about spacecraft or seat allocations. It will happily upgrade every passenger you mark with `u: true`. Enforcing the premium-seat limit (Artemis I: 4, Starliner: 2) is **your booking system's responsibility**, before you call the calculator.
 
 #### 3. Cancellation
 
@@ -119,18 +136,18 @@ A cancellation should:
 - No under-16s ✓
 
 **Pricing:**
-- Group of 4 → 10% group discount available
-- Alex: Gold (10%) vs Group (10%) → 10% off → £225,000
-- Sam: Group (10%) → £225,000
-- Jordan: Group (10%) → £225,000
-- Taylor: Silver (5%) vs Group (10%) → Group is better → £225,000
+- Group of 4 → group discount eligible, so every passenger's discount is floored at 10%
+- Alex: Gold is 10%, already at the floor → 10% off → £225,000
+- Sam: no loyalty, lifted to the 10% floor → £225,000
+- Jordan: no loyalty, lifted to the 10% floor → £225,000
+- Taylor: Silver is 5%, lifted to the 10% floor → £225,000
 - **Total: £900,000**
 
 **Then Sam cancels:**
 - Sam gets full refund: £225,000
-- Group is now 3 passengers → group discount removed
-- Remaining passengers repriced:
+- Group is now 3 passengers → group discount removed (no 10% floor)
+- Remaining passengers repriced with their own loyalty discount only:
   - Alex: Gold (10%) → £225,000 (no change, Gold still applies)
-  - Jordan: No discount → £250,000 (owes £25,000 extra)
+  - Jordan: no loyalty → £250,000 (owes £25,000 extra)
   - Taylor: Silver (5%) → £237,500 (owes £12,500 extra)
 - Waitlist is checked for next eligible passenger
