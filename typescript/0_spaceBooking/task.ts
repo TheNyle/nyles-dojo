@@ -11,7 +11,10 @@ export interface MedicalClearanceService {
  * You cannot control this implementation.
  */
 export interface PaymentGateway {
-  charge(passengerId: string, amount: number): { success: boolean; transactionId: string };
+  charge(
+    passengerId: string,
+    amount: number,
+  ): { success: boolean; transactionId: string };
   refund(transactionId: string, amount: number): { success: boolean };
 }
 
@@ -20,7 +23,15 @@ export interface PaymentGateway {
  * You cannot control this implementation.
  */
 export interface NotificationService {
-  sendBookingConfirmation(passengerId: string, flightId: string, details: string): void;
+  sendBookingConfirmation(
+    passengerId: string,
+    flightId: string,
+    details: string,
+  ): void;
   sendCancellationNotice(passengerId: string, flightId: string): void;
   sendWaitlistOffer(passengerId: string, flightId: string): void;
 }
+
+export const spaceBooking = (spaceCraft, destination, passenger) => {
+  return `Space Craft: ${spaceCraft} - Destination: ${destination} - Passenger: ${passenger}`;
+};
