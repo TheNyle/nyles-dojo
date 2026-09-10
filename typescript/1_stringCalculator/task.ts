@@ -3,9 +3,14 @@ export const stringCalculator = (input: string) => {
         return 0
     }
 
-    const numberStrings = input.split(',');
+    const numberStrings = input.replace('\n',',').split(',')
+
+    console.log(numberStrings)
 
     const total = numberStrings.reduce((a, b) => a += Number(b), 0);
 
     return total;
 }
+
+
+//"handles newline delimiters",
