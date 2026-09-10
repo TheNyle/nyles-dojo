@@ -5,12 +5,7 @@ export const stringCalculator = (input: string) => {
 
     const numberStrings = input.replace('\n',',').split(',')
 
-    console.log(numberStrings)
-
     const total = numberStrings.reduce((a, b) => a += Number(b), 0);
 
     return total;
 }
-
-
-//"handles newline delimiters",

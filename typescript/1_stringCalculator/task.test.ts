@@ -13,8 +13,12 @@ describe("String calculator function", () => {
     expect(stringCalculator('3,2,1')).toBe(6);
   });
 
-  it("handles newline delimiters", () => {
-    console.log(`3\n2,1`);
-    expect(stringCalculator(`3\n2,1`)).toBe(6);
+  const testCases = [
+    { description:'\n', value: '3\n2,1', result:6 },
+    { description:'\n', value: '3\n\n2,1', result:6 }
+]
+
+  it.each(testCases)("handle delimiter of $description", ({value, result}) => { //callback function 
+    expect(stringCalculator(value)).toBe(result)
   });
 });
