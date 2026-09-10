@@ -8,4 +8,7 @@ describe("String calculator function", () => {
   it("returns the input string as a number", () => {
     expect(stringCalculator('3')).toBe(3);
   });
+  it("return a sum of comma separated numbers", () => {
+    expect(stringCalculator('3,2,1')).toBe(6);
+  });
 });
