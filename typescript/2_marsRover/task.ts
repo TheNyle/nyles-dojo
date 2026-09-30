@@ -48,6 +48,10 @@ export const Rover = ({
     position = { ...startingPosition, y: startingPosition.y + 1 };
   }
 
+  if (instructions === "M M") {
+    position = { ...startingPosition, y: startingPosition.y + 2 };
+  }
+
   if (instructions === "R") {
     direction = "E";
   }

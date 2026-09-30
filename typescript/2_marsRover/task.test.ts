@@ -27,6 +27,16 @@ describe("Mars Rover", () => {
     ).toStrictEqual({ position: { x: 0, y: 0 }, direction: "E" });
   });
 
+  test("moves forward twice when instruction is MM", () => {
+    expect(
+      Rover({
+        startingPosition: { x: 0, y: 0 },
+        startingDirection: "N",
+        instructions: "M M",
+      }),
+    ).toStrictEqual({ position: { x: 0, y: 2 }, direction: "N" });
+  });
+
   // test("changes direction to E and moves forward", () => {
   //   expect(
   //     Rover({
