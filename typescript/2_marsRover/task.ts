@@ -42,8 +42,6 @@ export const Rover = ({
   let position = startingPosition;
   let direction = startingDirection;
 
-  // changes direction to E and moves forward
-
   if (instructions === "M") {
     position = { ...startingPosition, y: startingPosition.y + 1 };
   }
@@ -54,6 +52,10 @@ export const Rover = ({
 
   if (instructions === "R") {
     direction = "E";
+  }
+
+  if (instructions === "L") {
+    direction = "W";
   }
 
   if (!instructions) {

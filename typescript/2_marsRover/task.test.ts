@@ -17,14 +17,17 @@ describe("Mars Rover", () => {
     ).toStrictEqual({ position: { x: 0, y: 1 }, direction: "N" });
   });
 
-  test.each(["R", "L"])("changes direction", () => {
+  test.each([
+    { input: "R", result: "E" },
+    { input: "L", result: "W" },
+  ])("input $input changes direction to $result", ({ input, result }) => {
     expect(
       Rover({
         startingPosition: { x: 0, y: 0 },
         startingDirection: "N",
-        instructions: "R",
+        instructions: input,
       }),
-    ).toStrictEqual({ position: { x: 0, y: 0 }, direction: "E" });
+    ).toStrictEqual({ position: { x: 0, y: 0 }, direction: result });
   });
 
   test("moves forward twice when instruction is MM", () => {
