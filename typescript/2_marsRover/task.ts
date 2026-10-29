@@ -41,12 +41,37 @@ enum TurnRightMap {
   W = "N",
 }
 
-// export type Move = {
-//   N: { x: 0; y: 1 };
-//   E;
-//   S: { x: 0; y: -1 };
-//   W;
-// };
+export type Move = {
+  N: { x: 0; y: 1 };
+  E;
+  S: { x: 0; y: -1 };
+  W;
+};
+
+type MoveProps = {
+  position: Position;
+  direction: Direction;
+};
+
+const move = ({ position, direction }: MoveProps) => {
+  let x = position.x;
+  let y = position.y;
+
+  if (direction === "N") {
+    y++;
+  }
+  if (direction === "E") {
+    x++;
+  }
+  if (direction === "S") {
+    y -= 1;
+  }
+  if (direction === "W") {
+    x -= 1;
+  }
+
+  return { x, y };
+};
 
 export type Instructions = string;
 
@@ -71,41 +96,25 @@ export const Rover = ({
   for (let i = 0; i < instructions.length; i++) {
     const instruction = instructions[i];
 
-    if (instruction === "M") {
-      position = { ...position, y: position.y + 1 };
-    }
-
     if (instruction === "L") {
       direction = TurnLeftMap[direction];
+      continue;
     }
 
     if (instruction === "R") {
       direction = TurnRightMap[direction];
+      continue;
+    }
+
+    if (instruction === "M") {
+      position = move({ position, direction });
     }
   }
-
-  // if (instructions === "R" && startingDirection === "N") {
-  //   direction = "E";
-  // }
-
-  // if (instructions === "L" && startingDirection === "N") {
-  //   direction = "W";
-  // }
-
-  // if (instructions === "R" && startingDirection === "S") {
-  //   direction = "W";
-  // }
-
-  // if (instructions === "L" && startingDirection === "S") {
-  //   direction = "E";
-  // }
 
   return { position, direction };
 };
 
-// Naive option: conditional for each direction and turn.
-// Option 1: TurnMap - Object that stores the resulting direction of the specified turn
-// Option 2: DirectionMap -
+// Naive option:
 
 // for (let i = 0; i < instructions?.length; i++) {
 //   const val = instructions[i];

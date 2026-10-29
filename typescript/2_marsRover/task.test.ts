@@ -94,13 +94,13 @@ describe("Mars Rover", () => {
     },
   );
 
-  // test("changes direction to E and moves forward", () => {
-  //   expect(
-  //     Rover({
-  //       startingPosition: { x: 0, y: 0 },
-  //       startingDirection: "N",
-  //       instructions: "RM",
-  //     }),
-  //   ).toStrictEqual({ position: { x: 1, y: 0 }, direction: "E" });
-  // });
+  test("changes direction to E and moves forward", () => {
+    expect(
+      Rover({
+        startingPosition: { x: 0, y: 0 },
+        startingDirection: "N",
+        instructions: "R M",
+      }),
+    ).toStrictEqual({ position: { x: 1, y: 0 }, direction: "E" });
+  });
 });
