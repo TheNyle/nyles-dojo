@@ -73,6 +73,27 @@ describe("Mars Rover", () => {
     },
   );
 
+  // test multiple turns
+  test.each<TestInput>([
+    { instructions: "R R", startingDirection: "N", result: "S" },
+    { instructions: "R R R R", startingDirection: "N", result: "N" },
+    { instructions: "R L", startingDirection: "N", result: "N" },
+    { instructions: "L L", startingDirection: "N", result: "S" },
+    { instructions: "L L L L", startingDirection: "N", result: "N" },
+    { instructions: "L R", startingDirection: "N", result: "N" },
+  ])(
+    "startingDirection $startingDirection and instructions $instructions changes direction to $result",
+    ({ instructions, startingDirection, result }) => {
+      expect(
+        Rover({
+          startingPosition: { x: 0, y: 0 },
+          startingDirection,
+          instructions,
+        }),
+      ).toStrictEqual({ position: { x: 0, y: 0 }, direction: result });
+    },
+  );
+
   // test("changes direction to E and moves forward", () => {
   //   expect(
   //     Rover({

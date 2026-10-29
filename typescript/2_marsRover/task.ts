@@ -64,20 +64,24 @@ export const Rover = ({
   let position = startingPosition;
   let direction = startingDirection;
 
-  if (instructions === "M") {
-    position = { ...startingPosition, y: startingPosition.y + 1 };
+  if (!instructions?.length) {
+    return { position, direction };
   }
 
-  if (instructions === "M M") {
-    position = { ...startingPosition, y: startingPosition.y + 2 };
-  }
+  for (let i = 0; i < instructions.length; i++) {
+    const instruction = instructions[i];
 
-  if (instructions === "L") {
-    direction = TurnLeftMap[direction];
-  }
+    if (instruction === "M") {
+      position = { ...position, y: position.y + 1 };
+    }
 
-  if (instructions === "R") {
-    direction = TurnRightMap[direction];
+    if (instruction === "L") {
+      direction = TurnLeftMap[direction];
+    }
+
+    if (instruction === "R") {
+      direction = TurnRightMap[direction];
+    }
   }
 
   // if (instructions === "R" && startingDirection === "N") {
@@ -95,10 +99,6 @@ export const Rover = ({
   // if (instructions === "L" && startingDirection === "S") {
   //   direction = "E";
   // }
-
-  if (!instructions) {
-    return { position, direction };
-  }
 
   return { position, direction };
 };
